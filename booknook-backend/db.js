@@ -4,7 +4,7 @@ const pool = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "book_quotes", // Veritabanı adı doğru şekilde burada 'book_quotes'
+  database: "book_quotes",
 });
 
 module.exports = pool.promise();
