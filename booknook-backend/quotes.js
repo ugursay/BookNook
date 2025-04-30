@@ -13,4 +13,21 @@ router.get("/quotes", async (req, res) => {
   }
 });
 
+router.post("/quotes", async (req, res) => {
+  const { book_id, quote, author } = req.body;
+
+  try {
+    const [result] = await db.execute(
+      "INSERT INTO quotes (book_id, quote, author) VALUES (?,?,?)",
+      [book_id, quote, author]
+    );
+    res
+      .status(201)
+      .json({ id: result.insertId, message: "alıntı başarıyla eklendi" });
+  } catch (error) {
+    console.log("Alıntı eklenirken hata oluştu:", error);
+    res.status(500).json({ error: "Alıntı eklenemedi." });
+  }
+});
+
 module.exports = router;

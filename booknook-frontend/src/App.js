@@ -1,5 +1,6 @@
 import React from "react";
-import AddBook from "./AddBook";
+import AddBook from "./components/AddBook";
+import AddQuote from "./components/AddQuote";
 
 function App() {
   return (
@@ -8,7 +9,13 @@ function App() {
         <h1 className="text-3xl font-extrabold text-center text-gray-900 mb-8">
           BookNook
         </h1>
-        <AddBook />
+        <div className="p-2">
+          <AddBook />
+        </div>
+
+        <div className="p-2">
+          <AddQuote />
+        </div>
       </div>
     </div>
   );
