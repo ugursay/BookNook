@@ -44,6 +44,7 @@ const AddQuote = () => {
           </label>
           <input
             id="bookId"
+            value={bookId}
             onChange={(e) => {
               setBookId(e.target.value);
             }}
@@ -57,6 +58,7 @@ const AddQuote = () => {
           </label>
           <textarea
             id="quote"
+            value={quote}
             onChange={(e) => {
               setQuote(e.target.value);
             }}
@@ -70,6 +72,7 @@ const AddQuote = () => {
           </label>
           <input
             id="author"
+            value={author}
             onChange={(e) => {
               setAuthor(e.target.value);
             }}

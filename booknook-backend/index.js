@@ -1,11 +1,13 @@
-const cors = require("cors");
-const express = require("express");
-const app = express();
-const bookRoutes = require("./books");
-const quoteRoutes = require("./quotes");
+import express from "express";
+import cors from "cors";
+import bookRoutes from "./routes/books"; // books route'larını import ettik
+import quoteRoutes from "./routes/quotes"; // quotes route'larını import ettik
+import booksWithQuotes from "./routes/booksWithQuotes"; // booksWithQuotes route'larını import ettik
 
+const app = express(); // app nesnesi burada tanımlanmalı
 const PORT = 5000;
 
+// CORS ve JSON middleware'lerini kullanıyoruz
 app.use(cors());
 app.use(express.json());
 
@@ -15,8 +17,9 @@ app.get("/", (req, res) => {
 });
 
 // API yolları
-app.use("/api", bookRoutes);
-app.use("/api", quoteRoutes);
+app.use("/api/books", bookRoutes); // Kitaplarla ilgili işlemler
+app.use("/api/quotes", quoteRoutes); // Alıntılarla ilgili işlemler
+app.use("/api", booksWithQuotes); // Kitaplar ve alıntılarla ilgili işlemler
 
 // Sunucuyu başlat
 app.listen(PORT, () => {
