@@ -1,9 +1,10 @@
-const express = require("express");
+import express from "express";
+import db from "./db.js";
+
 const router = express.Router();
-const db = require("./db");
 
 // Tüm kitapları getir
-router.get("/books", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const [rows] = await db.query("SELECT * FROM books");
     res.status(200).json(rows);
@@ -14,7 +15,7 @@ router.get("/books", async (req, res) => {
 });
 
 // Yeni kitap ekle
-router.post("/books", async (req, res) => {
+router.post("/", async (req, res) => {
   const { title, author } = req.body;
 
   try {
@@ -23,13 +24,14 @@ router.post("/books", async (req, res) => {
       [title, author]
     );
 
-    res
-      .status(201)
-      .json({ message: "Kitap başarıyla eklendi", bookId: result.insertId });
+    res.status(201).json({
+      message: "Kitap başarıyla eklendi",
+      bookId: result.insertId,
+    });
   } catch (error) {
     console.error("Kitap eklenirken hata oluştu:", error);
     res.status(500).json({ error: "Kitap eklenemedi" });
   }
 });
 
-module.exports = router;
+export default router;

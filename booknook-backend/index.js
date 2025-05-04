@@ -1,27 +1,24 @@
 import express from "express";
 import cors from "cors";
-import bookRoutes from "./routes/books"; // books route'larını import ettik
-import quoteRoutes from "./routes/quotes"; // quotes route'larını import ettik
-import booksWithQuotes from "./routes/booksWithQuotes"; // booksWithQuotes route'larını import ettik
 
-const app = express(); // app nesnesi burada tanımlanmalı
+import bookRoutes from "./books.js";
+import quoteRoutes from "./quotes.js";
+import booksWithQuotes from "./booksWithQuotes.js";
+
+const app = express();
 const PORT = 5000;
 
-// CORS ve JSON middleware'lerini kullanıyoruz
 app.use(cors());
 app.use(express.json());
 
-// Ana sayfa
-app.get("/", (req, res) => {
+app.get("/booksWithQuotes", (req, res) => {
   res.send("BookNook API çalışıyor 📚");
 });
 
-// API yolları
-app.use("/api/books", bookRoutes); // Kitaplarla ilgili işlemler
-app.use("/api/quotes", quoteRoutes); // Alıntılarla ilgili işlemler
-app.use("/api", booksWithQuotes); // Kitaplar ve alıntılarla ilgili işlemler
+app.use("/api/books", bookRoutes);
+app.use("/api/quotes", quoteRoutes);
+app.use("/api/books-with-quotes", booksWithQuotes);
 
-// Sunucuyu başlat
 app.listen(PORT, () => {
   console.log(`Sunucu ${PORT} portunda çalışıyor.`);
 });

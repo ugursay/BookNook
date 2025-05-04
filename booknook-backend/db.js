@@ -1,4 +1,4 @@
-const mysql = require("mysql2");
+import mysql from "mysql2/promise";
 
 const pool = mysql.createPool({
   host: "localhost",
@@ -7,4 +7,4 @@ const pool = mysql.createPool({
   database: "book_quotes",
 });
 
-module.exports = pool.promise();
+export default pool;

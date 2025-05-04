@@ -12,10 +12,12 @@ router.get("/", async (req, res) => {
       ...book,
       quotes: quotes.filter((quote) => quote.book_id === book.id),
     }));
+
     res.status(200).json(bookWithQuotes);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "veiler alınırken hata oluştu" });
-    console.log(error); //error değişkeninin değeri değiştiği için deneme amaçlı yerleştirdim
+    console.error("Hata oluştu:", error);
+    res.status(500).json({ error: "Veriler alınırken hata oluştu" });
   }
 });
+
+export default router;
