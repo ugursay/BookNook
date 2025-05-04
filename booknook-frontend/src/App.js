@@ -1,6 +1,11 @@
 import React from "react";
 import AddBook from "./components/AddBook";
 import AddQuote from "./components/AddQuote";
+import BookQuoteSlider from "./components/BookQuoteSlider";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 function App() {
   return (
@@ -9,12 +14,16 @@ function App() {
         <h1 className="text-3xl font-extrabold text-center text-gray-900 mb-8">
           BookNook
         </h1>
-        <div className="p-2">
-          <AddBook />
-        </div>
+        <BookQuoteSlider />
 
-        <div className="p-2">
-          <AddQuote />
+        <div className="flex justify-between mt-8">
+          <div className="p-2 w-1/2">
+            <AddBook />
+          </div>
+
+          <div className="p-2 w-1/2">
+            <AddQuote />
+          </div>
         </div>
       </div>
     </div>

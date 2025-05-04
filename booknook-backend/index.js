@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 
-import bookRoutes from "./books.js";
-import quoteRoutes from "./quotes.js";
-import booksWithQuotes from "./booksWithQuotes.js";
+import bookRoutes from "./router/books.js";
+import quoteRoutes from "./router/quotes.js";
+import booksWithQuotes from "./router/booksWithQuotes.js";
 
 const app = express();
 const PORT = 5000;
