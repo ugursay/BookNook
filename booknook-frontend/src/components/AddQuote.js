@@ -33,7 +33,7 @@ const AddQuote = () => {
 
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Yeni Alıntı Ekle</h2>
+      <h2 className="text-2xl font-bold mb-4">Alıntı Ekle</h2>
       {error && <p className="text-red-500">{error}</p>}
       {success && <p className="text-green-500">Kitap Başarıyla Eklendi</p>}
 

@@ -4,6 +4,8 @@ import axios, { formToJSON } from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
+import { useBooks } from "../context/BookContext";
+
 const BookQuoteSlider = () => {
   const [booksWithQuotes, setBooksWithQuotes] = useState([]);
 
@@ -19,7 +21,7 @@ const BookQuoteSlider = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [booksWithQuotes]);
 
   return (
     <div className="max-w-7xl mx-auto py-10">
