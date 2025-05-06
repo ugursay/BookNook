@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     const [rows] = await db.query("SELECT * FROM books");
     res.status(200).json(rows);
   } catch (error) {
-    console.error(error);
+    console.error("Kitapları getirirken hata:", error);
     res.status(500).json({ error: "Kitapları getirirken bir hata oluştu." });
   }
 });
@@ -34,6 +34,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Kitap güncelle
 router.put("/:id", async (req, res) => {
   const bookId = req.params.id;
   const { title, author } = req.body;
@@ -44,21 +45,22 @@ router.put("/:id", async (req, res) => {
       [title, author, bookId]
     );
     if (result.affectedRows === 0) {
-      //Where koşuluna uymazsa
-      return res.status(404).json({ error: "kitap bulunamadı" });
+      // Kitap bulunamadı
+      return res.status(404).json({ error: "Kitap bulunamadı" });
     }
     if (result.changedRows === 0) {
       return res.status(200).json({
-        message: "kitap zaten bu şekilde kayıtlı, değişiklik yapılmadı",
+        message: "Kitap zaten bu şekilde kayıtlı, değişiklik yapılmadı",
       });
     }
-    res.status(200).json({ message: "kitap başarıyla güncellendi" });
+    res.status(200).json({ message: "Kitap başarıyla güncellendi" });
   } catch (error) {
-    console.log("kitap güncellenirken hata oluştu");
-    res.status(500).json({ error: "kitap güncellenemedi" });
+    console.error("Kitap güncellenirken hata oluştu:", error);
+    res.status(500).json({ error: "Kitap güncellenemedi" });
   }
 });
 
+// Kitap sil
 router.delete("/:id", async (req, res) => {
   const bookId = req.params.id;
   try {
@@ -69,8 +71,8 @@ router.delete("/:id", async (req, res) => {
     }
     res.status(200).json({ message: "Kitap başarıyla silindi" });
   } catch (error) {
-    console.log("kitap silinirken hata oluştu:", error);
-    res.status(500).json({ error: "kitap silinemedi" });
+    console.error("Kitap silinirken hata oluştu:", error);
+    res.status(500).json({ error: "Kitap silinemedi" });
   }
 });
 

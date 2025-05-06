@@ -1,6 +1,7 @@
 import React from "react";
 import AddBook from "./components/AddBook";
 import AddQuote from "./components/AddQuote";
+import EditBook from "./components/EditBook";
 import BookQuoteSlider from "./components/BookQuoteSlider";
 
 import "swiper/css";
@@ -19,14 +20,10 @@ function App() {
           </h1>
           <BookQuoteSlider />
 
-          <div className="flex justify-between mt-8">
-            <div className="p-2 w-1/2">
-              <AddBook />
-            </div>
-
-            <div className="p-2 w-1/2">
-              <AddQuote />
-            </div>
+          <div className="grid md:grid-cols-3 gap-4 mt-8">
+            <AddBook />
+            <AddQuote />
+            <EditBook />
           </div>
         </div>
       </div>
