@@ -34,4 +34,44 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  const bookId = req.params.id;
+  const { title, author } = req.body;
+
+  try {
+    const [result] = await db.execute(
+      "UPDATE books SET title=?, author=? WHERE id=?",
+      [title, author, bookId]
+    );
+    if (result.affectedRows === 0) {
+      //Where koşuluna uymazsa
+      return res.status(404).json({ error: "kitap bulunamadı" });
+    }
+    if (result.changedRows === 0) {
+      return res.status(200).json({
+        message: "kitap zaten bu şekilde kayıtlı, değişiklik yapılmadı",
+      });
+    }
+    res.status(200).json({ message: "kitap başarıyla güncellendi" });
+  } catch (error) {
+    console.log("kitap güncellenirken hata oluştu");
+    res.status(500).json({ error: "kitap güncellenemedi" });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  const bookId = req.params.id;
+  try {
+    const [result] = await db.execute("DELETE FROM books WHERE id=?", [bookId]);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Kitap bulunamadı" });
+    }
+    res.status(200).json({ message: "Kitap başarıyla silindi" });
+  } catch (error) {
+    console.log("kitap silinirken hata oluştu:", error);
+    res.status(500).json({ error: "kitap silinemedi" });
+  }
+});
+
 export default router;
