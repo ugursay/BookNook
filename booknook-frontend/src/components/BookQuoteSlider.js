@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios, { formToJSON } from "axios";
+import axios from "axios";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
-import { useBooks } from "../context/BookContext";
+// import { useBooks } from "../context/BookContext";
 
 const BookQuoteSlider = () => {
   const [booksWithQuotes, setBooksWithQuotes] = useState([]);
@@ -47,7 +47,7 @@ const BookQuoteSlider = () => {
             className="bg-white rounded-xl shadow-lg p-6 h-full"
           >
             <h3 className="text-xl font-semibold">{book.title}</h3>
-            <p className="text-gray-600 mb-2">Yazar:{book.author}</p>
+            <p className="text-gray-600 mb-2">Yazar: {book.author}</p>
             <p className="text-gray-500 text-sm mb-4">Kitap ID: {book.id}</p>
             <div className="space-y-2 mt-4">
               {book.quotes.length > 0 ? (
@@ -56,6 +56,7 @@ const BookQuoteSlider = () => {
                     {" "}
                     <p className="text-sm italic">"{quote.quote}"</p>
                     <p className="text-xs text-right">{quote.author}</p>
+                    <p className="text-xs text-left">Alıntı ID : {quote.id}</p>
                   </div>
                 ))
               ) : (

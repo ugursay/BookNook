@@ -62,7 +62,7 @@ const AddQuote = () => {
             onChange={(e) => {
               setQuote(e.target.value);
             }}
-            className="mt-1 block w-full px-4 border border-gray-300 rounded-lg"
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg"
             required
           />
         </div>

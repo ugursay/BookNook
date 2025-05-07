@@ -34,4 +34,50 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  const quoteId = req.params.id;
+  const { quote, author } = req.body;
+
+  try {
+    const [result] = await db.execute(
+      "UPDATE quotes SET quote=?,author=? WHERE id=?",
+      [quote, author, quoteId]
+    );
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Alıntı Bulunamadı" });
+    }
+
+    if (result.changedRows === 0) {
+      return res
+        .status(200)
+        .json({ message: "Alıntı zaten bu şekilde kayıtlı." });
+    }
+
+    res.status(200).json({ message: "Alıntı başarıyla güncellendi" });
+  } catch (error) {
+    console.error("Alıntı güncellenirken hata oluştu:", error);
+    res.status(500).json({ error: "Alıntı güncellenemedi" });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  const quoteId = req.params.id;
+
+  try {
+    const [result] = await db.execute("DELETE FROM quotes WHERE id=?", [
+      quoteId,
+    ]);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Alıntı bulunamadı" });
+    }
+
+    res.status(200).json({ message: "Alıntı başarıyla silindi" });
+  } catch (error) {
+    console.error("Alıntı silinirken hata oluştu", error);
+    res.status(500).json({ error: "Alıntı silinemedi" });
+  }
+});
+
 export default router;
