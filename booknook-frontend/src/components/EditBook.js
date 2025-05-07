@@ -34,7 +34,7 @@ const EditBook = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
       <h2 className="text-2xl font-bold mb-4">Kitap güncelle / Sil</h2>
       {message && <p className="mb-4 text-blue-600 font-semibold">{message}</p>}
       <div className="mb-4">

@@ -34,7 +34,7 @@ const AddBook = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md  transition-all duration-300 transform hover:scale-105">
       <h2 className="text-2xl font-bold mb-4">Kitap Ekle</h2>
       {error && <p className="text-red-500">{error}</p>}
       {success && <p className="text-green-500">Kitap Başarıyla Eklendi</p>}

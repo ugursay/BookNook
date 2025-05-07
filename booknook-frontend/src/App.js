@@ -14,9 +14,9 @@ import { BookProvider } from "./context/BookContext";
 function App() {
   return (
     <BookProvider>
-      <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gradient-to-r from-rose-100 via-sky-100 to-emerald-100 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl font-extrabold text-center text-gray-900 mb-8">
+          <h1 className="max-w-xl mx-auto bg-white/30 backdrop-blur-sm text-3xl font-extrabold text-center text-gray-900 p-2 bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:scale-105">
             BookNook
           </h1>
           <BookQuoteSlider />
