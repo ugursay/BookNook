@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { GiBookmarklet } from "react-icons/gi";
 
 const EditBook = () => {
   const [bookId, setBookId] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [message, setMessage] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleUpdate = async () => {
     try {
@@ -33,15 +35,47 @@ const EditBook = () => {
     }
   };
 
+  useEffect(() => {
+    if (message) {
+      setIsVisible(true);
+
+      const timeout = setTimeout(() => {
+        setIsVisible(false);
+      }, 1000);
+
+      const removeTimeout = setTimeout(() => {
+        setMessage("");
+      }, 1500); // 500ms sonra kaldır
+
+      return () => {
+        clearTimeout(timeout);
+        clearTimeout(removeTimeout);
+      };
+    }
+  }, [message]);
+
   return (
     <div className="bg-white/40 rounded-xl shadow-lg p-6 my-6  h-full transition-all duration-300 transform hover:scale-105">
       <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
-        <h2 className="text-2xl font-bold mb-4">Kitap güncelle / Sil</h2>
-        {message && (
-          <p className="mb-4 text-blue-600 font-semibold">{message}</p>
-        )}
+        <h2 className="text-2xl font-bold mb-4 transition-all duration-300 transform hover:scale-105">
+          Kitap güncelle / Sil 🕮
+        </h2>
+        <div className="h-3 mb-4">
+          {message && (
+            <p
+              className={`transition-opacity duration-500 text-sm text-blue-600 font-semibold ${
+                isVisible ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              {message} 🕮
+            </p>
+          )}
+        </div>
         <div className="mb-4">
-          <label htmlFor="bookId" className="block text-sm font-semibold">
+          <label
+            htmlFor="bookId"
+            className="block text-sm font-semibold transition-all duration-300 transform hover:scale-105"
+          >
             Kitap ID:
           </label>
           <input
@@ -52,12 +86,15 @@ const EditBook = () => {
             onChange={(e) => {
               setBookId(e.target.value);
             }}
-            className="mt-1 block w-full px-4 border-gray-300 rounded-lg"
+            className="mt-1 block w-full px-4 border-gray-300 rounded-lg transition-all duration-300 transform hover:scale-105"
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="title" className="block text-sm font-semibold">
+          <label
+            htmlFor="title"
+            className="block text-sm font-semibold transition-all duration-300 transform hover:scale-105"
+          >
             Yeni Başlık:
           </label>
           <input
@@ -68,12 +105,15 @@ const EditBook = () => {
             onChange={(e) => {
               setTitle(e.target.value);
             }}
-            className="mt-1 block w-full px-4 border-gray-300 rounded-lg"
+            className="mt-1 block w-full px-4 border-gray-300 rounded-lg transition-all duration-300 transform hover:scale-105"
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="author" className="block text-sm font-semibold">
+          <label
+            htmlFor="author"
+            className="block text-sm font-semibold transition-all duration-300 transform hover:scale-105"
+          >
             Yeni Yazar:
           </label>
           <input
@@ -84,19 +124,23 @@ const EditBook = () => {
             onChange={(e) => {
               setAuthor(e.target.value);
             }}
-            className="mt-1 block w-full px-4 border-gray-300 rounded-lg"
+            className="mt-1 block w-full px-4 border-gray-300 rounded-lg transition-all duration-300 transform hover:scale-105"
           />
+        </div>
+        <div className="flex justify-center items-center mb-4">
+          <GiBookmarklet className="rounded-full w-20 h-20 shadow-xl hover:blue-700 transition-all duration-300 transform hover:scale-125" />
         </div>
         <div className="flex gap-2">
           <button
             onClick={handleUpdate}
-            className="w-full py-2 px-4 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600"
+            className="w-full py-2 px-4 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition-all duration-300 transform hover:scale-105"
           >
             Kitabı Güncelle
           </button>
+
           <button
             onClick={handleDelete}
-            className="w-full py-2 px-4 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
+            className="w-full py-2 px-4 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-300 transform hover:scale-105"
           >
             Kitabı Sil
           </button>

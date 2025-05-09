@@ -26,7 +26,7 @@ const BookQuoteSlider = () => {
   return (
     <div className="max-w-7xl mx-auto py-10">
       <h2 className="max-w-xl mx-auto bg-white/30 backdrop-blur-sm text-2xl font-semibold text-center text-gray-900 p-2 bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:scale-105">
-        📚 Kitaplar Ve Alıntılar
+        📚 Kitaplar Ve Alıntılar 📚
       </h2>
 
       <Swiper
