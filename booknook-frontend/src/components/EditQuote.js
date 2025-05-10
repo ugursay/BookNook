@@ -46,6 +46,9 @@ const EditQuote = () => {
 
       const removeTimeout = setTimeout(() => {
         setMessage("");
+        setQuoteId("");
+        setQuote("");
+        setAuthor("");
       }, 1500); // 500ms sonra kaldır
 
       return () => {

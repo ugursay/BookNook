@@ -45,6 +45,9 @@ const EditBook = () => {
 
       const removeTimeout = setTimeout(() => {
         setMessage("");
+        setTitle("");
+        setAuthor("");
+        setBookId("");
       }, 1500); // 500ms sonra kaldır
 
       return () => {
@@ -58,7 +61,7 @@ const EditBook = () => {
     <div className="bg-white/40 rounded-xl shadow-lg p-6 my-6  h-full transition-all duration-300 transform hover:scale-105">
       <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
         <h2 className="text-2xl font-bold mb-4 transition-all duration-300 transform hover:scale-105">
-          Kitap güncelle / Sil 🕮
+          Kitap Güncelle / Sil 🕮
         </h2>
         <div className="h-3 mb-4">
           {message && (
